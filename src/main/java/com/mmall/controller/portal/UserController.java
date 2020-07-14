@@ -1,5 +1,11 @@
 package com.mmall.controller.portal;
 
+import com.mmall.common.Const;
+import com.mmall.common.ServerResponse;
+import com.mmall.pojo.User;
+import com.mmall.service.IUserService;
+import jdk.nashorn.internal.ir.ReturnNode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +23,57 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user/")
 public class UserController {
-             @RequestMapping(value= "login.do",method = RequestMethod.POST )
-             @ResponseBody
-            public Object login(String username,String password,HttpSession session)
+
+            @Autowired
+            private IUserService iUserService;
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @param session
+     * @return
+     */
+    @RequestMapping(value= "login.do",method = RequestMethod.POST )
+    @ResponseBody
+            public ServerResponse<User> login(String username, String password, HttpSession session)
             {
-                  return  null;
+                ServerResponse<User> response =iUserService.login(username,password);
+                if (response.isSuccess())
+                {
+                    session.setAttribute(Const.CURRENT_USER,response.getData());
+
+                }
+
+                return response;
 
             }
+
+    @RequestMapping(value= "logout.do",method = RequestMethod.POST )
+            public ServerResponse<String> logout(HttpSession session)
+            {
+
+                session.removeAttribute(Const.CURRENT_USER);
+                return ServerResponse.createBySuccess();
+
+            }
+
+
+    @RequestMapping(value= "register.do",method = RequestMethod.POST )
+    @ResponseBody
+    public ServerResponse<String> register(User user)
+    {
+        return iUserService.register(user);
+
+    }
+
+    @RequestMapping(value= "check_valid.do",method = RequestMethod.POST )
+    @ResponseBody
+    public ServerResponse<String> checkValid(String string,String type)
+    {
+        return iUserService.checkValid(string,type);
+
+    }
 
 
 }

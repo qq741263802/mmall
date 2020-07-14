@@ -312,4 +312,9 @@
         from mmall_user
         where username = #{username} and #{password}
     </select>
+  <select id="checkEmail" resultType="int" parameterType="string" >
+    select count(1) from mmall_user
+    where email = #{email}
+  </select>
+
 </mapper>
