@@ -7,6 +7,7 @@ import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
 
@@ -14,6 +15,7 @@ import javax.jws.soap.SOAPBinding;
  * @author lhm
  * @date 2020/7/3 23:29
  */
+@Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
     @Autowired
