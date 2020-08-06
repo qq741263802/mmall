@@ -26,19 +26,29 @@ import static org.junit.Assert.*;
 public class UserServiceImplTest {
     @Autowired
     private IUserService iUserService;
-
+    @SuppressWarnings("resources")
     @Test
     public void login() {
 
-        DbUtils db =new DbUtils();
-        ArrayList<Map<String,Object>> role=db.find("select * from mmall_role");
-        for (Map<String, Object> map:role)
-        {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-            for (String s : map.keySet()) {
-                System.out.print(map.get(s) + "  ");
-            }
+        String[] beanArray = applicationContext.getBeanDefinitionNames();
+
+        for(String s : beanArray) {
+            System.out.println(s);
         }
+
+       //ServerResponse<User> user =iUserService.login("admin","admin");
+
+//        DbUtils db =new DbUtils();
+//        ArrayList<Map<String,Object>> role=db.find("select * from mmall_role");
+//        for (Map<String, Object> map:role)
+//        {
+//
+//            for (String s : map.keySet()) {
+//                System.out.print(map.get(s) + "  ");
+//            }
+//        }
 
 
 
