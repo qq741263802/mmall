@@ -1,6 +1,9 @@
 package com.mmall.pojo;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
+
 
 public class User {
     private Integer id;

@@ -22,6 +22,7 @@ import java.util.UUID;
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
+
     @Autowired
     private UserMapper userMapper;
 
@@ -76,7 +77,7 @@ public class UserServiceImpl implements IUserService {
 
     }
 
-
+    @Override
     public ServerResponse<String> checkValid(String str,String type){
         if(org.apache.commons.lang3.StringUtils.isNotBlank(type)){
             //开始校验
