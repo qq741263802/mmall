@@ -23,7 +23,6 @@ import java.net.SocketPermission;
  */
 @Controller
 @RequestMapping("/user/")
-@ContextConfiguration({"classpath:applicationContext-datasource.xml"})
 public class UserController {
 
     @Autowired
