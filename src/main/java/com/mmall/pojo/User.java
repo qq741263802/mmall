@@ -1,7 +1,6 @@
 package com.mmall.pojo;
 
-import org.springframework.stereotype.Component;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 
 
