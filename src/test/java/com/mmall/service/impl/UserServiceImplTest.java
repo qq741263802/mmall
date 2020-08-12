@@ -29,15 +29,10 @@ public class UserServiceImplTest {
 
 //        int count=  userMapper.checkUsername("admin");
 //        System.out.println(count);
-       ServerResponse<User> user = iUserService.login("admin","admin");
-       System.out.println(user.getMsg());
-
-
-
-
-
-
-
+//       ServerResponse<User> user = iUserService.login("admin","admin");
+//       System.out.println(user.getMsg());
+        String j="        ";
+        System.out.println(j.length());
 
 
 
