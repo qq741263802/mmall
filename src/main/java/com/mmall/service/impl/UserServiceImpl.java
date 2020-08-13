@@ -51,6 +51,16 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<String> register(User user) {
 
+        if(user.getUsername() == null || user.getUsername().trim().length() == 0)
+        {
+            return  ServerResponse.createByErrorMessage("用户名不能为空");
+        }
+        if ( user.getPassword()==null || user.getPassword().trim().length() == 0)
+        {
+            return  ServerResponse.createByErrorMessage("密码不能为空");
+
+        }
+
         int count=userMapper.checkUsername(user.getUsername());
         if (count>0)
         {
