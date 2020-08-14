@@ -8,6 +8,7 @@ import com.mmall.pojo.Order;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
@@ -51,11 +52,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<String> register(User user) {
 
-        if(user.getUsername() == null || user.getUsername().trim().length() == 0)
+        if(user.getUsername() == null || StringUtils.isBlank(user.getUsername()))
         {
             return  ServerResponse.createByErrorMessage("用户名不能为空");
         }
-        if ( user.getPassword()==null || user.getPassword().trim().length() == 0)
+        if ( user.getPassword()==null || StringUtils.isBlank(user.getPassword()))
         {
             return  ServerResponse.createByErrorMessage("密码不能为空");
 
